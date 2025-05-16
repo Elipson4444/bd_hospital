@@ -7,16 +7,16 @@ public class Factura {
     private Long id_factura;
     private Long id_paciente;
     private LocalDateTime fecha_hora_emision;
-    private Long totaL;
+    private Long total;
     private String metodo_pago;
     private String estado;
     
-    public Factura(Long id_factura, Long id_paciente, LocalDateTime fecha_hora_emision, Long totaL, String metodo_pago,
+    public Factura(Long id_factura, Long id_paciente, LocalDateTime fecha_hora_emision, Long total, String metodo_pago,
             String estado) {
         this.id_factura = id_factura;
         this.id_paciente = id_paciente;
         this.fecha_hora_emision = fecha_hora_emision;
-        this.totaL = totaL;
+        this.total = total;
         this.metodo_pago = metodo_pago;
         this.estado = estado;
     }
@@ -45,12 +45,12 @@ public class Factura {
         this.fecha_hora_emision = fecha_hora_emision;
     }
 
-    public Long getTotaL() {
-        return totaL;
+    public Long getTotal() {
+        return total;
     }
 
-    public void setTotaL(Long totaL) {
-        this.totaL = totaL;
+    public void setTotal(Long total) {
+        this.total = total;
     }
 
     public String getMetodo_pago() {
@@ -68,9 +68,8 @@ public class Factura {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-
     
-
+    
 
     
 
