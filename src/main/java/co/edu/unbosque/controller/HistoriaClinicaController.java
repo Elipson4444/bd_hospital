@@ -13,44 +13,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.edu.unbosque.entity.Paciente;
-import co.edu.unbosque.repository.PacienteRepository;
+import co.edu.unbosque.entity.HistoriaClinica;
+import co.edu.unbosque.repository.HistoriaClinicaRepository;
 
 @RestController
-@RequestMapping("/paciente")
-public class PacienteController {
+@RequestMapping("/historia-clinica")
+public class HistoriaClinicaController {
 
     @Autowired
-    private PacienteRepository repository;
+    private HistoriaClinicaRepository repository;
 
     @GetMapping
-    public List<Paciente> obtenerTodos() {
+    public List<HistoriaClinica> obtenerTodos() {
         return repository.mostrarTodo();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> obtenerPaciente(@PathVariable Long id) {
-        Paciente paciente = repository.mostrarPorId(id);
-        if (paciente != null) {
-            return ResponseEntity.ok(paciente);
+    public ResponseEntity<?> obtenerHistoriaClinica(@PathVariable Long id) {
+        HistoriaClinica historiaClinica = repository.mostrarPorId(id);
+        if (historiaClinica != null) {
+            return ResponseEntity.ok(historiaClinica);
         }
         return ResponseEntity.notFound().build();
     }
 
-    @GetMapping("/seguro/{idSeguro}")
-    public List<Paciente> obtenerPorSeguro(@PathVariable Long idSeguro) {
-        return repository.mostrarPorSeguro(idSeguro);
+    @GetMapping("/paciente/{id_paciente}")
+    public List<HistoriaClinica> obtenerPorPaciente(@PathVariable Long id_paciente) {
+        return repository.mostrarPorPaciente(id_paciente);
     }
 
     @PostMapping
-    public boolean crear(@RequestBody Paciente paciente) {
-        return repository.guardar(paciente);
+    public boolean crear(@RequestBody HistoriaClinica historiaClinica) {
+        return repository.guardar(historiaClinica);
     }
 
     @PutMapping("/{id}")
-    public boolean actualizar(@PathVariable Long id, @RequestBody Paciente paciente) {
-        paciente.setId_paciente(id);
-        return repository.actualizar(paciente);
+    public boolean actualizar(@PathVariable Long id, @RequestBody HistoriaClinica historiaClinica) {
+        historiaClinica.setId_historia(id);
+        return repository.actualizar(historiaClinica);
     }
 
     @DeleteMapping("/{id}")
