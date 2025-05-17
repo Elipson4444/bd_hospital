@@ -47,6 +47,7 @@ public class PacienteRepository {
     }
 
     public boolean guardar(Paciente paciente) {
+        System.out.println("Guardando");
         try {
             Long nextId = jdbcTemplate.queryForObject(
                 "SELECT NVL(MAX(id_paciente), 0) + 1 FROM paciente", Long.class);
@@ -73,10 +74,10 @@ public class PacienteRepository {
     }
 
     public boolean actualizar(Paciente paciente) {
+        System.out.println("intentando actualizar");
     try {
         Timestamp fechaNacimiento = Timestamp.valueOf(paciente.getFecha_nacimiento());
-        System.out.println("Fecha recibida: " + paciente.getFecha_nacimiento());
-
+        
 
         String sql = "UPDATE paciente SET nombre = ?, apellido = ?, fecha_nacimiento = ?, sexo = ?, " +
                      "tipo_documento = ?, direccion = ?, telefono = ?, id_seguro = ? WHERE id_paciente = ?";
@@ -101,6 +102,7 @@ public class PacienteRepository {
 
 
     public boolean eliminar(Long id_paciente) {
+        System.out.println("Eliminando");
         try {
             String sql = "DELETE FROM paciente WHERE id_paciente = ?";
             int rowsAffected = jdbcTemplate.update(sql, id_paciente);
