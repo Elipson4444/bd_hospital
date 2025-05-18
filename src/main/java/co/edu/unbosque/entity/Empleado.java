@@ -5,15 +5,15 @@ public class Empleado {
     private Long id_empleado;
     private String nombre;
     private String apellido;
-    private String area;
     private String cargo;
-    
-    public Empleado(Long id_empleado, String nombre, String apellido, String area, String cargo) {
+    private int id_tparea;
+
+    public Empleado(Long id_empleado, String nombre, String apellido, String cargo, int id_tparea) {
         this.id_empleado = id_empleado;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.area = area;
         this.cargo = cargo;
+        this.id_tparea = id_tparea;
     }
 
     public Long getId_empleado() {
@@ -40,14 +40,6 @@ public class Empleado {
         this.apellido = apellido;
     }
 
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
     public String getCargo() {
         return cargo;
     }
@@ -56,8 +48,14 @@ public class Empleado {
         this.cargo = cargo;
     }
 
+    public int getId_tparea() {
+        return id_tparea;
+    }
+
+    public void setId_tparea(int id_tparea) {
+        this.id_tparea = id_tparea;
+    }
     
-
-
-
+    
+    
 }

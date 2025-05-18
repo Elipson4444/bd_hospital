@@ -20,8 +20,8 @@ public class EmpleadoRepository {
                 rs.getLong("id_empleado"),
                 rs.getString("nombre"),
                 rs.getString("apellido"),
-                rs.getString("area"),
-                rs.getString("cargo")
+                rs.getString("cargo"),
+                rs.getInt("id_tparea")
         ));
     }
 
@@ -31,23 +31,23 @@ public class EmpleadoRepository {
                 rs.getLong("id_empleado"),
                 rs.getString("nombre"),
                 rs.getString("apellido"),
-                rs.getString("area"),
-                rs.getString("cargo")
+                rs.getString("cargo"),
+                rs.getInt("id_tparea")
         ));
     }
 
     public boolean guardar(Empleado empleado) {
         try {
             Long nextId = jdbcTemplate.queryForObject(
-                "SELECT NVL(MAX(id_empleado), 0) + 1 FROM empleado", Long.class);
+                    "SELECT NVL(MAX(id_empleado), 0) + 1 FROM empleado", Long.class);
 
-            String sql = "INSERT INTO empleado (id_empleado, nombre, apellido, area, cargo) VALUES (?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO empleado (id_empleado, nombre, apellido, cargo, id_tparea) VALUES (?, ?, ?, ?, ?)";
             int rowsAffected = jdbcTemplate.update(sql,
                     nextId,
                     empleado.getNombre(),
                     empleado.getApellido(),
-                    empleado.getArea(),
-                    empleado.getCargo());
+                    empleado.getCargo(),
+                    empleado.getId_tparea());
 
             return rowsAffected > 0;
         } catch (Exception e) {
@@ -57,12 +57,12 @@ public class EmpleadoRepository {
 
     public boolean actualizar(Empleado empleado) {
         try {
-            String sql = "UPDATE empleado SET nombre = ?, apellido = ?, area = ?, cargo = ? WHERE id_empleado = ?";
+            String sql = "UPDATE empleado SET nombre = ?, apellido = ?, cargo = ?, id_tparea = ? WHERE id_empleado = ?";
             int rowsAffected = jdbcTemplate.update(sql,
                     empleado.getNombre(),
                     empleado.getApellido(),
-                    empleado.getArea(),
                     empleado.getCargo(),
+                    empleado.getId_tparea(),
                     empleado.getId_empleado());
             return rowsAffected > 0;
         } catch (Exception e) {
@@ -79,4 +79,5 @@ public class EmpleadoRepository {
             return false;
         }
     }
+
 }
