@@ -1,12 +1,12 @@
 package co.edu.unbosque.entity;
 
-public class Alergias {
+public class Alergia {
 
     private int id_al;
     private String descripcionl;
     private long id_historia;
 
-    public Alergias(int id_al, String descripcionl, long id_historia) {
+    public Alergia(int id_al, String descripcionl, long id_historia) {
         this.id_al = id_al;
         this.descripcionl = descripcionl;
         this.id_historia = id_historia;

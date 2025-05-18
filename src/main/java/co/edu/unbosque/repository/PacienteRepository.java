@@ -125,6 +125,8 @@ public class PacienteRepository {
                 rs.getString("direccion"),
                 rs.getString("telefono"),
                 rs.getLong("id_seguro")
+
+                
         ));
     }
 }

@@ -9,7 +9,6 @@ public class Paciente {
     private Long id_paciente;
     private String nombre;
     private String apellido;
-    
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime fecha_nacimiento;
     private String sexo;

@@ -13,10 +13,6 @@ public class Factura {
     private int id_tipo;
     private int id_concepto;
 
-
-    
-
-
     public Factura() {
     }
 
