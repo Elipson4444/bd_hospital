@@ -9,17 +9,17 @@ public class Reclamo {
     private String area_responsable;
     private String estado;
     private String tipo;
-    private int paciente;
+    private int id_paciente;
 
     public Reclamo(int id_reclamo, LocalDateTime fecha_hora_reclamo, String descripcion, String area_responsable,
-            String estado, String tipo, int paciente) {
+            String estado, String tipo, int id_paciente) {
         this.id_reclamo = id_reclamo;
         this.fecha_hora_reclamo = fecha_hora_reclamo;
         this.descripcion = descripcion;
         this.area_responsable = area_responsable;
         this.estado = estado;
         this.tipo = tipo;
-        this.paciente = paciente;
+        this.id_paciente = id_paciente;
     }
 
     public int getId_reclamo() {
@@ -70,15 +70,15 @@ public class Reclamo {
         this.tipo = tipo;
     }
 
-    public int getPaciente() {
-        return paciente;
+    public int getId_paciente() {
+        return id_paciente;
     }
 
-    public void setPaciente(int paciente) {
-        this.paciente = paciente;
+    public void setId_paciente(int id_paciente) {
+        this.id_paciente = id_paciente;
     }
 
     
-
+    
     
 }

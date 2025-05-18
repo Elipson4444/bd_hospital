@@ -25,7 +25,7 @@ public class ReclamoRepository {
                 rs.getString("area_responsable"),
                 rs.getString("estado"),
                 rs.getString("tipo"),
-                rs.getInt("paciente")
+                rs.getInt("id_paciente")
         ));
     }
 
@@ -38,7 +38,7 @@ public class ReclamoRepository {
                 rs.getString("area_responsable"),
                 rs.getString("estado"),
                 rs.getString("tipo"),
-                rs.getInt("paciente")
+                rs.getInt("id_paciente")
         ));
     }
 
@@ -47,7 +47,7 @@ public class ReclamoRepository {
             Integer nextId = jdbcTemplate.queryForObject(
                 "SELECT NVL(MAX(id_reclamo), 0) + 1 FROM reclamo", Integer.class);
             
-            String sql = "INSERT INTO reclamo (id_reclamo, fecha_hora_reclamo, descripcion, area_responsable, estado, tipo, paciente) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO reclamo (id_reclamo, fecha_hora_reclamo, descripcion, area_responsable, estado, tipo, id_paciente) VALUES (?, ?, ?, ?, ?, ?, ?)";
             int rowsAffected = jdbcTemplate.update(sql, 
                     nextId,
                     Timestamp.valueOf(reclamo.getFecha_hora_reclamo()),
@@ -55,7 +55,7 @@ public class ReclamoRepository {
                     reclamo.getArea_responsable(),
                     reclamo.getEstado(),
                     reclamo.getTipo(),
-                    reclamo.getPaciente());
+                    reclamo.getId_paciente());
             
             return rowsAffected > 0;
         } catch (Exception e) {
@@ -65,14 +65,14 @@ public class ReclamoRepository {
 
     public boolean actualizar(Reclamo reclamo) {
         try {
-            String sql = "UPDATE reclamo SET fecha_hora_reclamo = ?, descripcion = ?, area_responsable = ?, estado = ?, tipo = ?, paciente = ? WHERE id_reclamo = ?";
+            String sql = "UPDATE reclamo SET fecha_hora_reclamo = ?, descripcion = ?, area_responsable = ?, estado = ?, tipo = ?, id_paciente = ? WHERE id_reclamo = ?";
             int rowsAffected = jdbcTemplate.update(sql, 
                     Timestamp.valueOf(reclamo.getFecha_hora_reclamo()),
                     reclamo.getDescripcion(),
                     reclamo.getArea_responsable(),
                     reclamo.getEstado(),
                     reclamo.getTipo(),
-                    reclamo.getPaciente(),
+                    reclamo.getId_paciente(),
                     reclamo.getId_reclamo());
             return rowsAffected > 0;
         } catch (Exception e) {
