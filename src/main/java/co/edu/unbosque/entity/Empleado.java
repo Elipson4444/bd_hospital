@@ -7,6 +7,19 @@ public class Empleado {
     private String apellido;
     private String cargo;
     private int id_tparea;
+    private String tipoAreaNombre;
+
+    
+
+    public Empleado(Long id_empleado, String nombre, String apellido, String cargo, int id_tparea,
+            String tipoAreaNombre) {
+        this.id_empleado = id_empleado;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.cargo = cargo;
+        this.id_tparea = id_tparea;
+        this.tipoAreaNombre = tipoAreaNombre;
+    }
 
     public Empleado(Long id_empleado, String nombre, String apellido, String cargo, int id_tparea) {
         this.id_empleado = id_empleado;
@@ -54,6 +67,14 @@ public class Empleado {
 
     public void setId_tparea(int id_tparea) {
         this.id_tparea = id_tparea;
+    }
+
+    public String getTipoAreaNombre() {
+        return tipoAreaNombre;
+    }
+
+    public void setTipoAreaNombre(String tipoAreaNombre) {
+        this.tipoAreaNombre = tipoAreaNombre;
     }
     
     

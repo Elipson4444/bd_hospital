@@ -15,15 +15,20 @@ public class EmpleadoRepository {
     private JdbcTemplate jdbcTemplate;
 
     public List<Empleado> mostrarTodo() {
-        String sql = "SELECT * FROM empleado";
-        return jdbcTemplate.query(sql, (rs, rowNum) -> new Empleado(
-                rs.getLong("id_empleado"),
-                rs.getString("nombre"),
-                rs.getString("apellido"),
-                rs.getString("cargo"),
-                rs.getInt("id_tparea")
-        ));
-    }
+    String sql = "SELECT e.id_empleado, e.nombre, e.apellido, e.cargo, e.id_tparea, t.tipo " +
+                 "FROM empleado e " +
+                 "JOIN tipo_area t ON e.id_tparea = t.id_tparea";
+
+    return jdbcTemplate.query(sql, (rs, rowNum) -> new Empleado(
+            rs.getLong("id_empleado"),
+            rs.getString("nombre"),
+            rs.getString("apellido"),
+            rs.getString("cargo"),
+            rs.getInt("id_tparea"),
+            rs.getString("tipo")
+    ));
+}
+
 
     public Empleado mostrarPorId(Long id_empleado) {
         String sql = "SELECT * FROM empleado WHERE id_empleado = ?";
