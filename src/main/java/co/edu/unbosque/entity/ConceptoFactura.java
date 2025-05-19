@@ -8,6 +8,9 @@ public class ConceptoFactura {
     private double precio_unitario;
     private String concepto;
 
+    public ConceptoFactura (){
+    }
+
     public ConceptoFactura(int id_concepto, Long id_factura, String descripcion, double precio_unitario,
             String concepto) {
         this.id_concepto = id_concepto;

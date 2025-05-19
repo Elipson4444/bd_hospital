@@ -17,42 +17,60 @@ public class CitaRepository {
     private JdbcTemplate jdbcTemplate;
 
     public List<Cita> mostrarTodo() {
-        String sql = "SELECT * FROM cita";
+        String sql = """
+                SELECT
+                    c.id_cita,
+                    c.id_paciente,
+                    p.nombre AS nombre_paciente,
+                    p.apellido AS apellido_paciente,
+                    c.id_medico,
+                    e.nombre AS nombre_medico,
+                    e.apellido AS apellido_medico,
+                    c.fecha_hora_cita,
+                    c.estado
+                FROM cita c
+                JOIN paciente p ON c.id_paciente = p.id_paciente
+                JOIN medico m ON c.id_medico = m.id_medico
+                JOIN empleado e ON m.id_empleado = e.id_empleado
+                """;
+
         return jdbcTemplate.query(sql, (rs, rowNum) -> new Cita(
                 rs.getLong("id_cita"),
                 rs.getLong("id_paciente"),
+                rs.getString("nombre_paciente"),
+                rs.getString("apellido_paciente"),
                 rs.getLong("id_medico"),
+                rs.getString("nombre_medico"),
+                rs.getString("apellido_medico"),
                 rs.getTimestamp("fecha_hora_cita").toLocalDateTime(),
-                rs.getString("estado")
-        ));
+                rs.getString("estado")));
     }
 
     public Cita mostrarPorId(Long id_cita) {
         String sql = "SELECT * FROM cita WHERE id_cita = ?";
-        return jdbcTemplate.queryForObject(sql, new Object[]{id_cita}, (rs, rowNum) -> new Cita(
+        return jdbcTemplate.queryForObject(sql, new Object[] { id_cita }, (rs, rowNum) -> new Cita(
                 rs.getLong("id_cita"),
                 rs.getLong("id_paciente"),
                 rs.getLong("id_medico"),
                 rs.getTimestamp("fecha_hora_cita").toLocalDateTime(),
-                rs.getString("estado")
-        ));
+                rs.getString("estado")));
     }
 
     public boolean guardar(Cita cita) {
         try {
             Long nextId = jdbcTemplate.queryForObject(
-                "SELECT NVL(MAX(id_cita), 0) + 1 FROM cita", Long.class);
-            
+                    "SELECT NVL(MAX(id_cita), 0) + 1 FROM cita", Long.class);
+
             String sql = "INSERT INTO cita (id_cita, id_paciente, id_medico, fecha_hora_cita, estado) " +
-                         "VALUES (?, ?, ?, ?, ?)";
-            
+                    "VALUES (?, ?, ?, ?, ?)";
+
             int rowsAffected = jdbcTemplate.update(sql,
                     nextId,
                     cita.getId_paciente(),
                     cita.getId_medico(),
                     Timestamp.valueOf(cita.getFecha_hora_cita()),
                     cita.getEstado());
-            
+
             return rowsAffected > 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -63,15 +81,15 @@ public class CitaRepository {
     public boolean actualizar(Cita cita) {
         try {
             String sql = "UPDATE cita SET id_paciente = ?, id_medico = ?, " +
-                         "fecha_hora_cita = ?, estado = ? WHERE id_cita = ?";
-            
+                    "fecha_hora_cita = ?, estado = ? WHERE id_cita = ?";
+
             int rowsAffected = jdbcTemplate.update(sql,
                     cita.getId_paciente(),
                     cita.getId_medico(),
                     Timestamp.valueOf(cita.getFecha_hora_cita()),
                     cita.getEstado(),
                     cita.getId_cita());
-            
+
             return rowsAffected > 0;
         } catch (Exception e) {
             e.printStackTrace();
@@ -92,34 +110,31 @@ public class CitaRepository {
 
     public List<Cita> mostrarPorPaciente(Long id_paciente) {
         String sql = "SELECT * FROM cita WHERE id_paciente = ?";
-        return jdbcTemplate.query(sql, new Object[]{id_paciente}, (rs, rowNum) -> new Cita(
+        return jdbcTemplate.query(sql, new Object[] { id_paciente }, (rs, rowNum) -> new Cita(
                 rs.getLong("id_cita"),
                 rs.getLong("id_paciente"),
                 rs.getLong("id_medico"),
                 rs.getTimestamp("fecha_hora_cita").toLocalDateTime(),
-                rs.getString("estado")
-        ));
+                rs.getString("estado")));
     }
 
     public List<Cita> mostrarPorMedico(Long id_medico) {
         String sql = "SELECT * FROM cita WHERE id_medico = ?";
-        return jdbcTemplate.query(sql, new Object[]{id_medico}, (rs, rowNum) -> new Cita(
+        return jdbcTemplate.query(sql, new Object[] { id_medico }, (rs, rowNum) -> new Cita(
                 rs.getLong("id_cita"),
                 rs.getLong("id_paciente"),
                 rs.getLong("id_medico"),
                 rs.getTimestamp("fecha_hora_cita").toLocalDateTime(),
-                rs.getString("estado")
-        ));
+                rs.getString("estado")));
     }
 
     public List<Cita> mostrarPorEstado(String estado) {
         String sql = "SELECT * FROM cita WHERE estado = ?";
-        return jdbcTemplate.query(sql, new Object[]{estado}, (rs, rowNum) -> new Cita(
+        return jdbcTemplate.query(sql, new Object[] { estado }, (rs, rowNum) -> new Cita(
                 rs.getLong("id_cita"),
                 rs.getLong("id_paciente"),
                 rs.getLong("id_medico"),
                 rs.getTimestamp("fecha_hora_cita").toLocalDateTime(),
-                rs.getString("estado")
-        ));
+                rs.getString("estado")));
     }
 }

@@ -9,6 +9,9 @@ public class Prescripcion {
     private LocalDateTime fecha_hora;
     private String indicaciones_generales;
 
+    public Prescripcion (){
+    }
+
 
     public Prescripcion(int id_prescripcion, Long id_consulta, LocalDateTime fecha_hora,
             String indicaciones_generales) {

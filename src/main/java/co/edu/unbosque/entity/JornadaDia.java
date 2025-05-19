@@ -5,6 +5,9 @@ public class JornadaDia {
     private Long id_jornada;
     private String dia_semana;
 
+    public JornadaDia (){
+    }
+
     public JornadaDia(Long id_jornada, String dia_semana) {
         this.id_jornada = id_jornada;
         this.dia_semana = dia_semana;

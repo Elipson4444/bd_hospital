@@ -7,6 +7,9 @@ public class Diagnostico {
     private String diagnostico_egreso;
     private int id_paciento;
 
+    public Diagnostico (){
+    }
+
     public Diagnostico(int id_diagnostico, String diagnostico_ingreso, String diagnostico_egreso, int id_paciento) {
         this.id_diagnostico = id_diagnostico;
         this.diagnostico_ingreso = diagnostico_ingreso;

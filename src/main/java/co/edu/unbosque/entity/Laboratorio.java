@@ -10,6 +10,9 @@ public class Laboratorio {
     private LocalDateTime fecha_hora_solicitud;
     private String resultado;
     private String observaciones;
+
+    public Laboratorio (){
+    }
     
     public Laboratorio(Long id_laboratorio, Long id_consulta, String tipo_examen, LocalDateTime fecha_hora_solicitud,
             String resultado, String observaciones) {

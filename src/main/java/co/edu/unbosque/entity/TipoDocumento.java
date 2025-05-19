@@ -3,6 +3,9 @@ package co.edu.unbosque.entity;
 public class TipoDocumento {
     private int id_tpdocumento;
     private String tipo;
+
+    public TipoDocumento (){
+    }
     
     public TipoDocumento(int id_tpdocumento, String tipo) {
         this.id_tpdocumento = id_tpdocumento;

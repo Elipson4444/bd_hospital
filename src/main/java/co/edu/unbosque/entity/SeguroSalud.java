@@ -7,6 +7,10 @@ public class SeguroSalud {
     private String cobertura;
     private String contacto;
 
+
+    public SeguroSalud (){
+    }
+
     public SeguroSalud(Long id_seguro, String nombre, String tipo, String cobertura, String contacto) {
         this.id_seguro = id_seguro;
         this.nombre = nombre;

@@ -11,6 +11,9 @@ public class Programa {
     private LocalDateTime fecha_hora_fin;
     private String estado;
 
+    public Programa (){
+    }
+
     public Programa(Long id_programa, String nombre, String institucion, LocalDateTime fecha_hora_inicio,
             LocalDateTime fecha_hora_fin, String estado) {
         this.id_programa = id_programa;

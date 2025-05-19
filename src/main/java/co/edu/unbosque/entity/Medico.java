@@ -8,6 +8,9 @@ public class Medico {
     private int experiencia;
     private String universidad;
     private Long id_empleado;
+
+    public Medico (){
+    }
     
     public Medico(Long id_medico, Long numero_licencia, String especialidad, int experiencia, String universidad,
             Long id_empleado) {

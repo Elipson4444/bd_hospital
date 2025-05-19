@@ -16,17 +16,32 @@ public class CirugiaRepository {
     private JdbcTemplate jdbcTemplate;
 
     public List<Cirugia> mostrarTodo() {
-        String sql = "SELECT * FROM cirugia";
-        return jdbcTemplate.query(sql, (rs, rowNum) -> new Cirugia(
-                rs.getLong("id_cirugia"),
-                rs.getLong("id_paciente"),
-                rs.getLong("id_medico"),
-                rs.getTimestamp("fecha_hora").toLocalDateTime(),
-                rs.getString("tipo_procedimiento"),
-                rs.getString("diagnostico"),
-                rs.getString("observaciones")
-        ));
-    }
+    String sql = "SELECT c.id_cirugia, " +
+                 "       c.id_paciente, p.nombre AS nombre_paciente, p.apellido AS apellido_paciente, " +
+                 "       c.id_medico, e.nombre AS nombre_medico, e.apellido AS apellido_medico, " +
+                 "       c.fecha_hora, c.tipo_procedimiento, " +
+                 "       c.tipo_procedimiento AS nombre_tipo_procedimiento, " +  
+                 "       c.diagnostico, c.observaciones " +
+                 "FROM cirugia c " +
+                 "JOIN paciente p ON c.id_paciente = p.id_paciente " +
+                 "JOIN medico m ON c.id_medico = m.id_medico " +
+                 "JOIN empleado e ON m.id_empleado = e.id_empleado";
+
+    return jdbcTemplate.query(sql, (rs, rowNum) -> new Cirugia(
+            rs.getLong("id_cirugia"),
+            rs.getLong("id_paciente"),
+            rs.getString("nombre_paciente"),
+            rs.getString("apellido_paciente"),
+            rs.getLong("id_medico"),
+            rs.getString("nombre_medico"),
+            rs.getString("apellido_medico"),
+            rs.getTimestamp("fecha_hora").toLocalDateTime(),
+            rs.getString("tipo_procedimiento"),
+            rs.getString("diagnostico"),
+            rs.getString("observaciones")
+    ));
+}
+
 
     public Cirugia mostrarPorId(Long id_cirugia) {
         String sql = "SELECT * FROM cirugia WHERE id_cirugia = ?";

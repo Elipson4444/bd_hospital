@@ -14,6 +14,9 @@ public class Consulta {
     private String tratamiento;
     private String observaciones;
 
+    public Consulta (){
+    }
+
     public Consulta(Long id_consulta, Long id_paciente, Long id_medico, Long id_historia,
             LocalDateTime fecha_hora_creacion, String motivo, String diagnostico, String tratamiento,
             String observaciones) {

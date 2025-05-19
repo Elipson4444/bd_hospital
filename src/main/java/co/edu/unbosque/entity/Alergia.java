@@ -6,6 +6,11 @@ public class Alergia {
     private String descripcionl;
     private long id_historia;
 
+    
+
+    public Alergia() {
+    }
+
     public Alergia(int id_al, String descripcionl, long id_historia) {
         this.id_al = id_al;
         this.descripcionl = descripcionl;

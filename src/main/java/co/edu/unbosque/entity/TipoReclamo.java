@@ -5,6 +5,9 @@ public class TipoReclamo {
     private int id_tpreclamo;
     private String tipo;
 
+    public TipoReclamo (){
+    }
+
     public TipoReclamo(int id_tpreclamo, String tipo) {
         this.id_tpreclamo = id_tpreclamo;
         this.tipo = tipo;

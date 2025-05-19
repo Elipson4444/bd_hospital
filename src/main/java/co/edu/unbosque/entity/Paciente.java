@@ -18,6 +18,9 @@ public class Paciente {
     private Long id_seguro;
 
 
+    public Paciente (){
+    }
+
 
     public Paciente(Long id_paciente, String nombre, String apellido, LocalDateTime fecha_nacimiento, String sexo,
             String tipo_documento, String direccion, String telefono, Long id_seguro) {

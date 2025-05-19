@@ -13,6 +13,11 @@ public class Hospitalizacion {
     private String diagnostico_ingreso;
     private String diagnostico_egreso;
 
+    
+
+    public Hospitalizacion() {
+    }
+
     public Hospitalizacion(Long id_hospitalizacion, Long id_paciente, Long id_habitacion,
             LocalDateTime fecha_hora_ingresa, LocalDateTime fecha_hora_egreso, String motivo,
             String diagnostico_ingreso, String diagnostico_egreso) {

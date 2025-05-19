@@ -11,6 +11,9 @@ public class EquipoMedico {
     private String modelo;
     private String estado;
 
+    public EquipoMedico (){
+    }
+
     public EquipoMedico(Long id_equipo_medico, String nombre, String marca, LocalDateTime fecha_hora_adquisicion,
             String modelo, String estado) {
         this.id_equipo_medico = id_equipo_medico;

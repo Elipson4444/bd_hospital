@@ -5,7 +5,9 @@ public class TipoArea {
     private int id_tparea;
     private String tipo;
 
-    
+    public TipoArea (){
+    }
+
     public TipoArea(int id_tparea, String tipo) {
         this.id_tparea = id_tparea;
         this.tipo = tipo;

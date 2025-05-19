@@ -6,6 +6,9 @@ public class Poliza {
     private String nombre;
     private String contacto;
     
+    public Poliza (){
+    }
+
     public Poliza(int id_poliza, String nombre, String contacto) {
         this.id_poliza = id_poliza;
         this.nombre = nombre;

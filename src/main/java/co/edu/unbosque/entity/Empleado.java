@@ -9,7 +9,8 @@ public class Empleado {
     private int id_tparea;
     private String tipoAreaNombre;
 
-    
+    public Empleado (){
+    }
 
     public Empleado(Long id_empleado, String nombre, String apellido, String cargo, int id_tparea,
             String tipoAreaNombre) {

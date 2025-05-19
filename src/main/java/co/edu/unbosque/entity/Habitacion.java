@@ -9,6 +9,9 @@ public class Habitacion {
 
     private String estado;
 
+    public Habitacion (){
+    }
+
     public Habitacion(Long id_habitacion, int numero, int piso, String estado) {
         this.id_habitacion = id_habitacion;
         this.numero = numero;

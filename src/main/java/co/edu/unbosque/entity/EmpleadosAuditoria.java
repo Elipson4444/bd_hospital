@@ -6,6 +6,9 @@ public class EmpleadosAuditoria {
     private int id_empleado;
     private int id_auditoria;
 
+    public EmpleadosAuditoria (){
+    }
+
     public EmpleadosAuditoria(int id_ea, int id_empleado, int id_auditoria) {
         this.id_ea = id_ea;
         this.id_empleado = id_empleado;

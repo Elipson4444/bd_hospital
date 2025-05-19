@@ -13,6 +13,9 @@ public class EventoAdverso {
     private String acciones_tomadas;
     private Long id_paciente;
 
+    public EventoAdverso (){
+    }
+
     public EventoAdverso(Long id_evento, LocalDateTime fecha_hora_evento, String tipo_evento, String gravedad,
             String ubicacion, String estado, String acciones_tomadas, Long id_paciente) {
         this.id_evento = id_evento;

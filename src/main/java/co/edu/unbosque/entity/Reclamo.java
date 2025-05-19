@@ -11,6 +11,9 @@ public class Reclamo {
     private String tipo;
     private int id_paciente;
 
+    public Reclamo (){
+    }
+
     public Reclamo(int id_reclamo, LocalDateTime fecha_hora_reclamo, String descripcion, String area_responsable,
             String estado, String tipo, int id_paciente) {
         this.id_reclamo = id_reclamo;

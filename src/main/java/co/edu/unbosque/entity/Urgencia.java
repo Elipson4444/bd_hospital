@@ -11,6 +11,8 @@ public class Urgencia {
     private String acciones_realizadas;
     private String resultado;
 
+    public Urgencia (){
+    }
     
     public Urgencia(Long id_urgencia, Long id_paciencia, LocalDateTime fecha_hora, String motivo,
             String acciones_realizadas, String resultado) {

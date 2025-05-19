@@ -7,6 +7,12 @@ public class Antecedente {
     private String tipo;
     private int id_historia;
 
+    
+    
+    public Antecedente() {
+    }
+
+
 
     public Antecedente(int id_af, String descripcion, String tipo, int id_historia) {
         this.id_af = id_af;

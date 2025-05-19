@@ -9,6 +9,9 @@ public class JornadaLaboral {
     private LocalDateTime fecha_hora_cierre;
     private int id_empleado;
 
+    public JornadaLaboral (){
+    }
+
     
     public JornadaLaboral(int id_jornada, LocalDateTime fecha_hora_inicio, LocalDateTime fecha_hora_cierre,
             int id_empleado) {

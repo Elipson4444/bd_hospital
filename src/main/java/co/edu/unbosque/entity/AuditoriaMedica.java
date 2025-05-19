@@ -11,6 +11,9 @@ public class AuditoriaMedica {
     private String hallazgos;
     private String estado;
     private int id_empleado;
+
+    public AuditoriaMedica (){
+    }
     
     public AuditoriaMedica(int id_auditoria, LocalDateTime fecha_hora_inicio, LocalDateTime fecha_hora_fin,
             String tipo_auditoria, String hallazgos, String estado, int id_empleado) {

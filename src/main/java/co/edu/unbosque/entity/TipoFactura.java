@@ -5,6 +5,9 @@ public class TipoFactura {
     private int id_tipo;
     private String tipo;
 
+    public TipoFactura (){
+    }
+
     public TipoFactura(int id_tipo, String tipo) {
         this.id_tipo = id_tipo;
         this.tipo = tipo;

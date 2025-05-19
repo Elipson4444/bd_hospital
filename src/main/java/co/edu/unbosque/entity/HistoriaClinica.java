@@ -9,6 +9,9 @@ public class HistoriaClinica {
     private LocalDateTime fecha_hora_creacion;
     private String observaciones;
 
+    public HistoriaClinica (){
+    }
+
     public HistoriaClinica(Long id_historia, Long id_paciente, LocalDateTime fecha_hora_creacion,
             String observaciones) {
         this.id_historia = id_historia;
