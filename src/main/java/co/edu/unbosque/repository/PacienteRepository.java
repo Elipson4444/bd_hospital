@@ -1,7 +1,7 @@
 package co.edu.unbosque.repository;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class PacienteRepository {
                 rs.getLong("id_paciente"),
                 rs.getString("nombre"),
                 rs.getString("apellido"),
-                rs.getTimestamp("fecha_nacimiento").toLocalDateTime(),
+                rs.getDate("fecha_nacimiento").toLocalDate(),
                 rs.getString("sexo"),
                 rs.getString("tipo_documento"),
                 rs.getString("direccion"),
@@ -37,7 +37,7 @@ public class PacienteRepository {
                 rs.getLong("id_paciente"),
                 rs.getString("nombre"),
                 rs.getString("apellido"),
-                rs.getTimestamp("fecha_nacimiento").toLocalDateTime(),
+                rs.getDate("fecha_nacimiento").toLocalDate(),
                 rs.getString("sexo"),
                 rs.getString("tipo_documento"),
                 rs.getString("direccion"),
@@ -59,7 +59,7 @@ public class PacienteRepository {
                     nextId,
                     paciente.getNombre(),
                     paciente.getApellido(),
-                    Timestamp.valueOf(paciente.getFecha_nacimiento()),
+                    Date.valueOf(paciente.getFecha_nacimiento()),
                     paciente.getSexo(),
                     paciente.getTipo_documento(),
                     paciente.getDireccion(),
@@ -75,31 +75,27 @@ public class PacienteRepository {
 
     public boolean actualizar(Paciente paciente) {
         System.out.println("intentando actualizar");
-    try {
-        Timestamp fechaNacimiento = Timestamp.valueOf(paciente.getFecha_nacimiento());
-        
+        try {
+            String sql = "UPDATE paciente SET nombre = ?, apellido = ?, fecha_nacimiento = ?, sexo = ?, " +
+                         "tipo_documento = ?, direccion = ?, telefono = ?, id_seguro = ? WHERE id_paciente = ?";
 
-        String sql = "UPDATE paciente SET nombre = ?, apellido = ?, fecha_nacimiento = ?, sexo = ?, " +
-                     "tipo_documento = ?, direccion = ?, telefono = ?, id_seguro = ? WHERE id_paciente = ?";
+            int rowsAffected = jdbcTemplate.update(sql,
+                    paciente.getNombre(),
+                    paciente.getApellido(),
+                    Date.valueOf(paciente.getFecha_nacimiento()),
+                    paciente.getSexo(),
+                    paciente.getTipo_documento(),
+                    paciente.getDireccion(),
+                    paciente.getTelefono(),
+                    paciente.getId_seguro(),
+                    paciente.getId_paciente());
 
-        int rowsAffected = jdbcTemplate.update(sql,
-                paciente.getNombre(),
-                paciente.getApellido(),
-                fechaNacimiento,
-                paciente.getSexo(),
-                paciente.getTipo_documento(),
-                paciente.getDireccion(),
-                paciente.getTelefono(),
-                paciente.getId_seguro(),
-                paciente.getId_paciente());
-
-        return rowsAffected > 0;
-    } catch (Exception e) {
-        return false;
+            return rowsAffected > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
-}
-
-
 
     public boolean eliminar(Long id_paciente) {
         System.out.println("Eliminando");
@@ -119,14 +115,12 @@ public class PacienteRepository {
                 rs.getLong("id_paciente"),
                 rs.getString("nombre"),
                 rs.getString("apellido"),
-                rs.getTimestamp("fecha_nacimiento").toLocalDateTime(),
+                rs.getDate("fecha_nacimiento").toLocalDate(),
                 rs.getString("sexo"),
                 rs.getString("tipo_documento"),
                 rs.getString("direccion"),
                 rs.getString("telefono"),
                 rs.getLong("id_seguro")
-
-                
         ));
     }
 }

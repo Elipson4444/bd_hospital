@@ -1,5 +1,6 @@
 package co.edu.unbosque.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -9,8 +10,7 @@ public class Paciente {
     private Long id_paciente;
     private String nombre;
     private String apellido;
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime fecha_nacimiento;
+    private LocalDate fecha_nacimiento;
     private String sexo;
     private String tipo_documento;
     private String direccion;
@@ -22,7 +22,7 @@ public class Paciente {
     }
 
 
-    public Paciente(Long id_paciente, String nombre, String apellido, LocalDateTime fecha_nacimiento, String sexo,
+    public Paciente(Long id_paciente, String nombre, String apellido, LocalDate fecha_nacimiento, String sexo,
             String tipo_documento, String direccion, String telefono, Long id_seguro) {
         this.id_paciente = id_paciente;
         this.nombre = nombre;
@@ -36,11 +36,9 @@ public class Paciente {
     }
 
 
-
     public Long getId_paciente() {
         return id_paciente;
     }
-
 
 
     public void setId_paciente(Long id_paciente) {
@@ -48,11 +46,9 @@ public class Paciente {
     }
 
 
-
     public String getNombre() {
         return nombre;
     }
-
 
 
     public void setNombre(String nombre) {
@@ -60,11 +56,9 @@ public class Paciente {
     }
 
 
-
     public String getApellido() {
         return apellido;
     }
-
 
 
     public void setApellido(String apellido) {
@@ -72,17 +66,14 @@ public class Paciente {
     }
 
 
-
-    public LocalDateTime getFecha_nacimiento() {
+    public LocalDate getFecha_nacimiento() {
         return fecha_nacimiento;
     }
 
 
-
-    public void setFecha_nacimiento(LocalDateTime fecha_nacimiento) {
+    public void setFecha_nacimiento(LocalDate fecha_nacimiento) {
         this.fecha_nacimiento = fecha_nacimiento;
     }
-
 
 
     public String getSexo() {
@@ -90,11 +81,9 @@ public class Paciente {
     }
 
 
-
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-
 
 
     public String getTipo_documento() {
@@ -102,11 +91,9 @@ public class Paciente {
     }
 
 
-
     public void setTipo_documento(String tipo_documento) {
         this.tipo_documento = tipo_documento;
     }
-
 
 
     public String getDireccion() {
@@ -114,11 +101,9 @@ public class Paciente {
     }
 
 
-
     public void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
 
 
     public String getTelefono() {
@@ -126,11 +111,9 @@ public class Paciente {
     }
 
 
-
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-
 
 
     public Long getId_seguro() {
@@ -138,15 +121,14 @@ public class Paciente {
     }
 
 
-
     public void setId_seguro(Long id_seguro) {
         this.id_seguro = id_seguro;
     }
 
-    
 
     
 
+    
 
 
 }

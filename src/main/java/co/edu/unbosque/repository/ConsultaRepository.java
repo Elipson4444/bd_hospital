@@ -16,20 +16,42 @@ public class ConsultaRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    
+
     public List<Consulta> mostrarTodo() {
-        String sql = "SELECT * FROM consulta";
+        String sql = "SELECT c.*, " +
+                     "p.nombre AS nombrePaciente, p.apellido AS apellidoPaciente, " +
+                     "e.nombre AS nombreMedico, e.apellido AS apellidoMedico, " +
+                     "hc.observaciones AS observacionesHistoria " +
+                     "FROM consulta c " +
+                     "JOIN paciente p ON c.id_paciente = p.id_paciente " +
+                     "JOIN medico m ON c.id_medico = m.id_medico " +
+                     "JOIN empleado e ON m.id_empleado = e.id_empleado " +
+                     "JOIN historia_clinica hc ON c.id_historia = hc.id_historia";
+
         return jdbcTemplate.query(sql, (rs, rowNum) -> new Consulta(
-                rs.getLong("id_consulta"),
-                rs.getLong("id_paciente"),
-                rs.getLong("id_medico"),
-                rs.getLong("id_historia"),
-                rs.getTimestamp("fecha_hora_creacion").toLocalDateTime(),
-                rs.getString("motivo"),
-                rs.getString("diagnostico"),
-                rs.getString("tratamiento"),
-                rs.getString("observaciones")
+            rs.getLong("id_consulta"),
+            rs.getLong("id_paciente"),
+            rs.getString("nombrePaciente"),
+            rs.getString("apellidoPaciente"),
+            rs.getLong("id_medico"),
+            rs.getString("nombreMedico"),
+            rs.getString("apellidoMedico"),
+            rs.getLong("id_historia"),
+            rs.getString("observacionesHistoria"),
+            rs.getTimestamp("fecha_hora_creacion").toLocalDateTime(),
+            rs.getString("motivo"),
+            rs.getString("diagnostico"),
+            rs.getString("tratamiento"),
+            rs.getString("observaciones")
+            
+            
         ));
     }
+
+    
+
+    
 
     public Consulta mostrarPorId(Long id_consulta) {
         String sql = "SELECT * FROM consulta WHERE id_consulta = ?";
